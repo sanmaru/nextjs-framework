@@ -1,11 +1,18 @@
 import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import getConfig from 'next/config';
 
 type Props = {
   children?: ReactNode;
   title?: string;
 }
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+// Will only be available on the server-side
+console.log(serverRuntimeConfig.mySecret)
+// Will be available on both server-side and client-side
+console.log(publicRuntimeConfig.staticFolder)
 
 const Layout = ({children, title = 'This is the default Title'}: Props) => (
   <div>
